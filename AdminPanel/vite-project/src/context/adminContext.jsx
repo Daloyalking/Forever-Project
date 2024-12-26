@@ -8,7 +8,7 @@ const AdminContextProvider = ({ children }) => {
   );
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const backendUrl = "http://localhost:4000";
+  const backendUrl = "https://forever-backend-flame.vercel.app";
 
   let value = {
     email,

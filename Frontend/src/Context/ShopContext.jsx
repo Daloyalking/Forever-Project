@@ -32,7 +32,7 @@ const ShopContextProvider = ({ children }) => {
 
   const currency = "$";
   const delivery_fee = 10;
-  const backendUrl = "http://localhost:4000";
+  const backendUrl = "https://forever-backend-flame.vercel.app";
   let navigate = useNavigate();
 
   const loginFunction = async () => {
@@ -274,7 +274,7 @@ const ShopContextProvider = ({ children }) => {
     };
 
     totalProductPrice(products);
-  }, [cartItems,products]);
+  }, [cartItems, products]);
 
   useEffect(() => {
     fetchProducts();
