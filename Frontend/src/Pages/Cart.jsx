@@ -9,14 +9,6 @@ const Cart = () => {
     useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
 
-  //  e.target.value === '' || e.target.value === 0
-  //                         ? ''
-  //                         : updateQuantity(
-  //                             item._id,
-  //                             item.size,
-  //                             Number(e.target.value)
-  //                           )
-
   useEffect(() => {
     if (products.length > 0) {
       const tempData = [];
@@ -69,9 +61,14 @@ const Cart = () => {
                     <input
                       className="w-20 border-[2px] px-2"
                       min={1}
-                      value={item.quantity}
+                      defaultValue={item.quantity}
                       onChange={(e) => {
-                        const newQuantity = Number(e.target.value);
+                        let newQuantity;
+                        if (e.target.value === null || e.target.value === "") {
+                          e.target.value;
+                        } else {
+                          newQuantity = Number(e.target.value);
+                        }
                         // Ensure quantity is not negative
                         if (newQuantity >= 0) {
                           updateQuantity(item._id, item.size, newQuantity);
