@@ -73,14 +73,19 @@ const deleteProduct = async (req, res) => {
       res.json({ success: true, message: "Product deleted from cart" });
     } else {
       // If the product or size doesn't exist, send an error response
-      res.status(400).json({ success: false, message: "Product or size not found in cart" });
+      res
+        .status(400)
+        .json({ success: false, message: "Product or size not found in cart" });
     }
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({ success: false, message: "An error occurred while deleting the product" });
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "An error occurred while deleting the product",
+      });
   }
 };
-
-
 
 export { addProduct, updateProduct, getProduct, deleteProduct };

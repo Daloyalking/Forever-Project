@@ -2,6 +2,7 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const ShopContext = createContext();
 
@@ -137,6 +138,10 @@ const ShopContextProvider = ({ children }) => {
   //CartItems Section
   const addToCart = async (itemId, size) => {
     let cartData = structuredClone(cartItems);
+    if (!size) {
+      toast.error("Select Product Size");
+      return;
+    }
 
     if (cartData[itemId]) {
       if (cartData[itemId][size]) {
@@ -151,7 +156,7 @@ const ShopContextProvider = ({ children }) => {
 
     setCartItems(cartData);
     setSize("");
-
+    toast.success("Item Added to Cart");
     //Adding cart data to database
     if (token) {
       try {
@@ -198,7 +203,7 @@ const ShopContextProvider = ({ children }) => {
       delete cartData[itemId];
     }
     setCartItems(cartData);
-
+    toast.success("Item Deleted Successfully");
     if (token) {
       try {
         const result = await axios.post(

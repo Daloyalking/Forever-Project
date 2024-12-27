@@ -14,6 +14,8 @@ import { ShopContext } from "./Context/ShopContext";
 import PlaceOrder from "./Pages/PlaceOrder";
 import Orders from "./Pages/Orders";
 import Payment from "./Pages/Payment";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { openSearch } = useContext(ShopContext);
@@ -22,6 +24,7 @@ function App() {
   const isCollectionPath = location.pathname.includes("collection");
   return (
     <div className="m-0 p-0">
+    <ToastContainer/>
       <NavBar />
 
       {openSearch && isCollectionPath ? <Search /> : ""}
