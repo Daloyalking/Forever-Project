@@ -16,6 +16,7 @@ import Orders from "./Pages/Orders";
 import Payment from "./Pages/Payment";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ResetPassword from "./Pages/ResetPassword";
 
 function App() {
   const { openSearch } = useContext(ShopContext);
@@ -24,7 +25,7 @@ function App() {
   const isCollectionPath = location.pathname.includes("collection");
   return (
     <div className="m-0 p-0">
-    <ToastContainer/>
+      <ToastContainer />
       <NavBar />
 
       {openSearch && isCollectionPath ? <Search /> : ""}
@@ -37,6 +38,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/reset" element={<ResetPassword />} />
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/place-order" element={<PlaceOrder />} />
           <Route path="/orders" element={<Orders />} />

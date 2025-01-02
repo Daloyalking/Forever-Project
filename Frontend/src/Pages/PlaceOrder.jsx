@@ -32,7 +32,6 @@ const PlaceOrder = () => {
     country: "",
     phone: "",
   });
-  console.log(totalPrice, delivery_fee);
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {

@@ -7,7 +7,6 @@ const Login = () => {
   const {
     token,
     setToken,
-
     navigate,
     loginOp,
     setLoginOp,
@@ -84,7 +83,13 @@ const Login = () => {
             </p>
           )}
           <div className="flex items-center justify-between">
-            <p className="cursor-pointer">Forgot your password?</p>
+            <p className="" onClick={() => navigate("/reset")}>
+              Forgot password?
+              <span className="underline text-blue-400 cursor-pointer">
+                {" "}
+                Reset Password
+              </span>
+            </p>
             <p
               onClick={() => {
                 setLoginOp(!loginOp);

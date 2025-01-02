@@ -7,6 +7,7 @@ import connectCloudinary from "./Config/cloudinary.js";
 import productRouter from "./Routes/ProductRoute.js";
 import cartRoute from "./Routes/cartRoute.js";
 import orderRouter from "./Routes/OrderRoute.js";
+import authRoute from "./Routes/authRoute.js";
 
 // Load environment variables
 
@@ -25,6 +26,7 @@ app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 app.use("/api/cart", cartRoute);
 app.use("/api/order", orderRouter);
+app.use("/api/auth",authRoute)
 
 app.get("/", (req, res) => {
   res.send("Server is working");
