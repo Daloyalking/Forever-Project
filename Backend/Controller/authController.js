@@ -47,15 +47,14 @@ export const resetOtp = async (req, res) => {
           subject: "Reset your Forever Clothing Store Account Password",
           html: `Your otp is <b style="color:red">${otp}</b>. Reset your account using the otp and the otp is only valid for 4mins`,
         };
-        const info = await transporter.sendMail(mailOptions);
 
-        console.log("Email sent:", info.response);
-        res.json({ success: true, message: info });
+        const info = await transporter.sendMail(mailOptions);
+        return info;
       } catch (error) {
         console.error("Error sending email:", error.message);
       }
 
-      res.json({ success: true, message: "Reset Otp sent successfully" });
+      res.json({ success: true, message: "Reset Otp sent successfully", info });
     } catch (error) {
       res.json({ success: false, message: error.message });
     }
