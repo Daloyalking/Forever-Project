@@ -8,7 +8,7 @@ export const AuthContext = createContext();
 const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
-  const backendurl = "https://miniauth-zeta.vercel.app";
+  const backendurl = "https://forever-backend-flame.vercel.app";
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;

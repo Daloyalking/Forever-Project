@@ -19,18 +19,21 @@ connectCloudinary();
 
 //Middleware
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+  })
+);
 
 //Api Endpoint
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 app.use("/api/cart", cartRoute);
 app.use("/api/order", orderRouter);
-app.use("/api/auth",authRoute)
+app.use("/api/auth", authRoute);
 
 app.get("/", (req, res) => {
   res.send("Server is working");
 });
-
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

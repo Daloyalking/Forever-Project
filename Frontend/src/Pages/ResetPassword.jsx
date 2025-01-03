@@ -5,11 +5,10 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
-import { ShopContext } from "../Context/ShopContext";
 
 const ResetPassword = () => {
   const { loading, setLoading, navigate } = useContext(AuthContext);
-  const { backendurl } = useContext(ShopContext);
+  const { backendurl } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [newPassword1, setNewPassword1] = useState("");
   const [newPassword2, setNewPassword2] = useState("");
@@ -72,89 +71,89 @@ const ResetPassword = () => {
     return;
   };
 
-  const handleResendOtp = async (e) => {
-    e.preventDefault();
+  // const handleResendOtp = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      setLoading(true);
-      const { data } = await axios.post(backendurl + "/api/auth/resend-otp", {
-        email,
-      });
-      if (data.success) {
-        setIsEmailSent(true);
-        toast.success(data.message);
-      } else {
-        toast.error(data.message);
-      }
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-    return;
-  };
+  //   try {
+  //     setLoading(true);
+  //     const { data } = await axios.post(backendurl + "/api/auth/resend-otp", {
+  //       email,
+  //     });
+  //     if (data.success) {
+  //       setIsEmailSent(true);
+  //       toast.success(data.message);
+  //     } else {
+  //       toast.error(data.message);
+  //     }
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  //   return;
+  // };
 
-  const handleOtp = async (e) => {
-    e.preventDefault();
-    axios.defaults.withCredentials = true;
+  // const handleOtp = async (e) => {
+  //   e.preventDefault();
+  //   axios.defaults.withCredentials = true;
 
-    const otpArray = inputRefs.current.map((e) => e.value);
-    const otpF = otpArray.join("");
+  //   const otpArray = inputRefs.current.map((e) => e.value);
+  //   const otpF = otpArray.join("");
 
-    try {
-      setLoading(true);
-      const { data } = await axios.post(backendurl + "/api/auth/otp-reset", {
-        otp: otpF,
-      });
+  //   try {
+  //     setLoading(true);
+  //     const { data } = await axios.post(backendurl + "/api/auth/otp-reset", {
+  //       otp: otpF,
+  //     });
 
-      if (data.success) {
-        setIsEmailSent(true);
-        setIsOtpSubmitted(true);
-        toast.success(data.message);
-      } else {
-        toast.error(data.message);
-      }
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-    return;
-  };
+  //     if (data.success) {
+  //       setIsEmailSent(true);
+  //       setIsOtpSubmitted(true);
+  //       toast.success(data.message);
+  //     } else {
+  //       toast.error(data.message);
+  //     }
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  //   return;
+  // };
 
-  const resetPassword = async (e) => {
-    e.preventDefault();
-    axios.defaults.withCredentials = true;
+  // const resetPassword = async (e) => {
+  //   e.preventDefault();
+  //   axios.defaults.withCredentials = true;
 
-    try {
-      setLoading(true);
-      const { data } = await axios.post(
-        backendurl + "/api/auth/verify-password",
-        {
-          email,
-          newPassword1,
-          newPassword2,
-        }
-      );
-      console.log(data);
-      if (data.success) {
-        setIsEmailSent(true);
-        setIsOtpSubmitted(true);
-        toast.success(data.message);
-        setEmail("");
-        setOtp("");
-        navigate("/login");
-      } else {
-        toast.error(data.message);
-        navigate("/reset-password");
-      }
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-    return;
-  };
+  //   try {
+  //     setLoading(true);
+  //     const { data } = await axios.post(
+  //       backendurl + "/api/auth/verify-password",
+  //       {
+  //         email,
+  //         newPassword1,
+  //         newPassword2,
+  //       }
+  //     );
+  //     console.log(data);
+  //     if (data.success) {
+  //       setIsEmailSent(true);
+  //       setIsOtpSubmitted(true);
+  //       toast.success(data.message);
+  //       setEmail("");
+  //       setOtp("");
+  //       navigate("/login");
+  //     } else {
+  //       toast.error(data.message);
+  //       navigate("/reset-password");
+  //     }
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // return;
+  //};
   return (
     <div className="w-full">
       <div className=" relative w-full px-[5%] pt-[2%]">
@@ -232,7 +231,10 @@ const ResetPassword = () => {
                   ))}
               </div>
 
-              <p className="mt-2 mb-2" onClick={handleResendOtp}>
+              <p
+                className="mt-2 mb-2"
+                //onClick={handleResendOtp}
+              >
                 OTP expired?
                 <span className="text-blue-400 underline cursor-pointer">
                   {" "}
@@ -241,7 +243,7 @@ const ResetPassword = () => {
               </p>
               <button
                 type="submit"
-                onClick={handleOtp}
+                //onClick={handleOtp}
                 className={`${
                   loading ? "bg-[#333a5c]" : "bg-gradient-to-br"
                 } from-indigo-400 to-indigo-800 w-full text-white py-1 rounded-full`}
@@ -286,7 +288,7 @@ const ResetPassword = () => {
 
               <button
                 type="submit"
-                onClick={resetPassword}
+                // onClick={resetPassword}
                 className={`${
                   loading ? "bg-[#333a5c]" : "bg-gradient-to-br"
                 } from-indigo-400 to-indigo-800 w-full text-white py-1 rounded-full mt-5`}
