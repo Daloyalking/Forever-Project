@@ -50,6 +50,7 @@ export const resetOtp = async (req, res) => {
         const info = await transporter.sendMail(mailOptions);
 
         console.log("Email sent:", info.response);
+        res.json({ success: true, message: info });
       } catch (error) {
         console.error("Error sending email:", error.message);
       }
