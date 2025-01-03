@@ -5,6 +5,7 @@ import userModel from "../Models/userModel.js";
 
 export const resetOtp = async (req, res) => {
   const { email } = req.body;
+  console.log(email);
   if (!email) {
     //Checks if user exists in the User Database
     return res.json({ success: false, message: "Field cannot be blank" });
@@ -46,7 +47,9 @@ export const resetOtp = async (req, res) => {
           subject: "Reset your Forever Clothing Store Account Password",
           html: `Your otp is <b style="color:red">${otp}</b>. Reset your account using the otp and the otp is only valid for 4mins`,
         };
-        await transporter.sendMail(mailOptions);
+        const info = await transporter.sendMail(mailOptions);
+
+        console.log("Email sent:", info.response);
       } catch (error) {
         console.error("Error sending email:", error.message);
       }

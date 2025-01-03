@@ -31,6 +31,8 @@ const ShopContextProvider = ({ children }) => {
     password: "",
   });
 
+  axios.defaults.withCredentials = true;
+
   const currency = "$";
   const delivery_fee = 10;
   const backendUrl = "https://forever-backend-flame.vercel.app";

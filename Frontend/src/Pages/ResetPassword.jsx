@@ -18,6 +18,9 @@ const ResetPassword = () => {
 
   const inputRefs = useRef([]);
 
+  axios.defaults.withCredentials = true;
+  console.log(email);
+
   const onInputHandler = (e, index) => {
     if (e.target.value.length > 0 && index < inputRefs.current.length - 1) {
       inputRefs.current[index + 1].focus();
@@ -172,7 +175,7 @@ const ResetPassword = () => {
               <div className="flex items-center bg-[#333a5c] pl-4 py-2 rounded-full mt-5">
                 <input
                   type="email"
-                  className="bg-transparent text-[12px] outline-none border-none pl-2"
+                  className="bg-transparent w-full text-[12px] outline-none border-none pl-2"
                   name=""
                   id=""
                   placeholder="Email Id"
@@ -266,7 +269,7 @@ const ResetPassword = () => {
               <div className="flex items-center bg-[#333a5c] pl-4 py-2 rounded-full mt-5">
                 <input
                   type="password"
-                  className="bg-transparent text-[12px] outline-none border-none pl-2"
+                  className="bg-transparent w-full text-[12px] outline-none border-none pl-2"
                   name=""
                   id=""
                   placeholder="Enter Password"
@@ -277,7 +280,7 @@ const ResetPassword = () => {
               <div className="flex items-center bg-[#333a5c] pl-4 py-2 rounded-full mt-5">
                 <input
                   type="password"
-                  className="bg-transparent text-[12px] outline-none border-none pl-2"
+                  className="bg-transparent w-full text-[12px] outline-none border-none pl-2"
                   name=""
                   id=""
                   placeholder="Confirm your password"
