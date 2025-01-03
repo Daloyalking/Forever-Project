@@ -76,105 +76,105 @@ const ResetPassword = () => {
     return;
   };
 
-  // const handleResendOtp = async (e) => {
-  //   e.preventDefault();
+  const handleResendOtp = async (e) => {
+    e.preventDefault();
 
-  //   try {
-  //     setLoading(true);
-  //     const { data } = await axios.post(backendurl + "/api/auth/resend-otp", {
-  //       email,
-  //     });
-  //     if (data.success) {
-  //       setIsEmailSent(true);
-  //       toast.success(data.message);
-  //     } else {
-  //       toast.error(data.message);
-  //     }
-  //   } catch (error) {
-  //     toast.error(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  //   return;
-  // };
+    try {
+      setLoading(true);
+      const { data } = await axios.post(backendurl + "/api/auth/resend-otp", {
+        email,
+      });
+      if (data.success) {
+        setIsEmailSent(true);
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+    return;
+  };
 
-  // const handleOtp = async (e) => {
-  //   e.preventDefault();
-  //   axios.defaults.withCredentials = true;
+  const handleOtp = async (e) => {
+    e.preventDefault();
+    axios.defaults.withCredentials = true;
 
-  //   const otpArray = inputRefs.current.map((e) => e.value);
-  //   const otpF = otpArray.join("");
+    const otpArray = inputRefs.current.map((e) => e.value);
+    const otpF = otpArray.join("");
 
-  //   try {
-  //     setLoading(true);
-  //     const { data } = await axios.post(backendurl + "/api/auth/otp-reset", {
-  //       otp: otpF,
-  //     });
+    try {
+      setLoading(true);
+      const { data } = await axios.post(backendurl + "/api/auth/otp-reset", {
+        otp: otpF,
+      });
 
-  //     if (data.success) {
-  //       setIsEmailSent(true);
-  //       setIsOtpSubmitted(true);
-  //       toast.success(data.message);
-  //     } else {
-  //       toast.error(data.message);
-  //     }
-  //   } catch (error) {
-  //     toast.error(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  //   return;
-  // };
+      if (data.success) {
+        setIsEmailSent(true);
+        setIsOtpSubmitted(true);
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+    return;
+  };
 
-  // const resetPassword = async (e) => {
-  //   e.preventDefault();
-  //   axios.defaults.withCredentials = true;
+  const resetPassword = async (e) => {
+    e.preventDefault();
+    axios.defaults.withCredentials = true;
 
-  //   try {
-  //     setLoading(true);
-  //     const { data } = await axios.post(
-  //       backendurl + "/api/auth/verify-password",
-  //       {
-  //         email,
-  //         newPassword1,
-  //         newPassword2,
-  //       }
-  //     );
-  //     console.log(data);
-  //     if (data.success) {
-  //       setIsEmailSent(true);
-  //       setIsOtpSubmitted(true);
-  //       toast.success(data.message);
-  //       setEmail("");
-  //       setOtp("");
-  //       navigate("/login");
-  //     } else {
-  //       toast.error(data.message);
-  //       navigate("/reset-password");
-  //     }
-  //   } catch (error) {
-  //     toast.error(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // return;
-  //};
+    try {
+      setLoading(true);
+      const { data } = await axios.post(
+        backendurl + "/api/auth/verify-password",
+        {
+          email,
+          newPassword1,
+          newPassword2,
+        }
+      );
+      console.log(data);
+      if (data.success) {
+        setIsEmailSent(true);
+        setIsOtpSubmitted(true);
+        toast.success(data.message);
+        setEmail("");
+        setOtp("");
+        navigate("/login");
+      } else {
+        toast.error(data.message);
+        navigate("/reset");
+      }
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+    return;
+  };
   return (
-    <div className="w-full">
+    <div className="w-full bg-gradient-to-bl from-indigo-400 to-purple-800 pb-[15%] md:pb-[7%]">
       <div className=" relative w-full px-[5%] pt-[2%]">
-        <div className="flex items-center justify-center md:w-[40%] mx-auto mt-[40%] md:mt-[10%] ">
+        <div className="flex items-center justify-center md:w-[40%] mx-auto mt-[20%] md:mt-[5%] ">
           {/* Email Sent Section */}
 
           {!isEmailSent && (
-            <div className="bg-slate-900 p-8 rounded-lg text-indigo-300 w-full">
-              <p className="text-center text-white text-[1.5rem] font-bold">
+            <div className=" p-8 rounded-lg border-[2px] shadow-lg text-black w-full">
+              <p className="text-center text-black text-[1.5rem] font-bold">
                 Reset Password
               </p>
               <p className="text-center text-[14px]">
                 Enter your registered email address
               </p>
 
-              <div className="flex items-center bg-[#333a5c] pl-4 py-2 rounded-full mt-5">
+              <div className="flex items-center border-[2px] pl-4 py-2 rounded-full mt-5">
                 <input
                   type="email"
                   className="bg-transparent w-full text-[12px] outline-none border-none pl-2"
@@ -185,7 +185,7 @@ const ResetPassword = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <p className="mt-2" onClick={() => navigate("/login")}>
+              <p className="mt-2 text-[14px] md:text-[16px] text-center" onClick={() => navigate("/login")}>
                 Remembered your password?
                 <span className="text-blue-400 underline cursor-pointer">
                   {" "}
@@ -198,7 +198,7 @@ const ResetPassword = () => {
                 onClick={handleResetEmail}
                 className={`${
                   loading ? "bg-[#333a5c]" : "bg-gradient-to-br"
-                }  from-indigo-400 to-indigo-800 w-full text-white py-1 rounded-full mt-5`}
+                }  from-indigo-400 to-indigo-800 w-full text-white py-1 rounded-full mt-4`}
               >
                 {loading ? "Loading..." : "Submit"}
               </button>
@@ -207,8 +207,8 @@ const ResetPassword = () => {
 
           {/* Otp Sent Section */}
           {!isOtpSubmitted && isEmailSent && (
-            <div className="bg-slate-900  p-8 rounded-lg text-indigo-300  ">
-              <p className="text-center text-white text-[1.5rem] font-bold">
+            <div className="border-[2px] shadow-lg text-black  p-8 rounded-lg">
+              <p className="text-center text-black text-[1.5rem] font-bold">
                 Reset Password OTP
               </p>
               <p className="text-center text-[14px]">
@@ -222,7 +222,7 @@ const ResetPassword = () => {
                   .fill(0)
                   .map((_, index) => (
                     <input
-                      className="w-[40px] h-[40px] text-center text-black text-[1.2rem]"
+                      className="w-[40px] h-[40px] text-center border-[2px] text-[1.2rem]"
                       type="text"
                       maxLength={1}
                       required
@@ -236,10 +236,7 @@ const ResetPassword = () => {
                   ))}
               </div>
 
-              <p
-                className="mt-2 mb-2"
-                //onClick={handleResendOtp}
-              >
+              <p className="mt-2 mb-2" onClick={handleResendOtp}>
                 OTP expired?
                 <span className="text-blue-400 underline cursor-pointer">
                   {" "}
@@ -248,7 +245,7 @@ const ResetPassword = () => {
               </p>
               <button
                 type="submit"
-                //onClick={handleOtp}
+                onClick={handleOtp}
                 className={`${
                   loading ? "bg-[#333a5c]" : "bg-gradient-to-br"
                 } from-indigo-400 to-indigo-800 w-full text-white py-1 rounded-full`}
@@ -260,15 +257,15 @@ const ResetPassword = () => {
 
           {/* Reset Password Section */}
           {isOtpSubmitted && isEmailSent && (
-            <div className="bg-slate-900 p-8 rounded-lg text-indigo-300 w-[80%]">
-              <p className="text-center text-white text-[1.5rem] font-bold">
+            <div className="border-[2px] shadow-lg text-black p-8 rounded-lg w-[80%]">
+              <p className="text-center text-black text-[1.5rem] font-bold">
                 New Password
               </p>
               <p className="text-center text-[14px]">
                 Enter the new password below
               </p>
 
-              <div className="flex items-center bg-[#333a5c] pl-4 py-2 rounded-full mt-5">
+              <div className="flex items-center border-[2px] pl-4 py-2 rounded-full mt-5">
                 <input
                   type="password"
                   className="bg-transparent w-full text-[12px] outline-none border-none pl-2"
@@ -279,7 +276,7 @@ const ResetPassword = () => {
                   onChange={(e) => setNewPassword1(e.target.value)}
                 />
               </div>
-              <div className="flex items-center bg-[#333a5c] pl-4 py-2 rounded-full mt-5">
+              <div className="flex items-center border-[2px] pl-4 py-2 rounded-full mt-5">
                 <input
                   type="password"
                   className="bg-transparent w-full text-[12px] outline-none border-none pl-2"
@@ -293,7 +290,7 @@ const ResetPassword = () => {
 
               <button
                 type="submit"
-                // onClick={resetPassword}
+                onClick={resetPassword}
                 className={`${
                   loading ? "bg-[#333a5c]" : "bg-gradient-to-br"
                 } from-indigo-400 to-indigo-800 w-full text-white py-1 rounded-full mt-5`}

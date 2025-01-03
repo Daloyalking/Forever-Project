@@ -40,33 +40,22 @@ export const resetOtp = async (req, res) => {
       userExist.resetExpiresAt = Date.now() + 4 * 60 * 1000;
       await userExist.save();
 
-      let info;
-
-      // Forever Clothing Store 
-
       try {
         const mailOptions = {
-          from: `<$(process.env.SENDER_EMAIL)>`,
-          to: userExist.email,
+          from: `Forever Clothing Store <$(process.env.SENDER_EMAIL)>`,
+          to: email,
           subject: "Reset your Forever Clothing Store Account Password",
           html: `Your otp is <b style="color:red">${otp}</b>. Reset your account using the otp and the otp is only valid for 4mins`,
         };
+        const info = await transporter.sendMail(mailOptions);
 
-        info = await transporter.sendMail(mailOptions);
-        res.json({
-          success: true,
-          message: "Reset Otp sent successfully",
-          info,
-        });
-      } catch (error) {
-        res.json({
-          success: false,
-          message: error.message,
-          info,
-        });
+        console.log("Email sent:", info.response);
+        res.json({ success: true, message: info });
+      } catch (erro) {
+        console.error("Error sending email:", error.message);
       }
 
-      // res.json({ success: true, message: "Reset Otp sent successfully", info });
+      res.json({ success: true, message: "Reset Otp sent successfully" });
     } catch (error) {
       res.json({ success: false, message: error.message });
     }
