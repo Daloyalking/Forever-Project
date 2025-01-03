@@ -40,6 +40,8 @@ export const resetOtp = async (req, res) => {
       userExist.resetExpiresAt = Date.now() + 4 * 60 * 1000;
       await userExist.save();
 
+      let info;
+
       try {
         const mailOptions = {
           from: `Forever Clothing Store <$(process.env.SENDER_EMAIL)>`,
@@ -48,7 +50,7 @@ export const resetOtp = async (req, res) => {
           html: `Your otp is <b style="color:red">${otp}</b>. Reset your account using the otp and the otp is only valid for 4mins`,
         };
 
-        const info = await transporter.sendMail(mailOptions);
+        info = await transporter.sendMail(mailOptions);
         return info;
       } catch (error) {
         console.error("Error sending email:", error.message);
