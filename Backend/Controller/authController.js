@@ -42,9 +42,11 @@ export const resetOtp = async (req, res) => {
 
       let info;
 
+      // Forever Clothing Store 
+
       try {
         const mailOptions = {
-          from: `Forever Clothing Store <$(process.env.SENDER_EMAIL)>`,
+          from: `<$(process.env.SENDER_EMAIL)>`,
           to: userExist.email,
           subject: "Reset your Forever Clothing Store Account Password",
           html: `Your otp is <b style="color:red">${otp}</b>. Reset your account using the otp and the otp is only valid for 4mins`,
